@@ -3,6 +3,7 @@ package com.mindorks.bootcamp.learndagger.ui.main
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.mindorks.bootcamp.learndagger.data.local.DatabaseService
+import com.mindorks.bootcamp.learndagger.data.local.entity.Address
 import com.mindorks.bootcamp.learndagger.data.local.entity.User
 import com.mindorks.bootcamp.learndagger.data.remote.NetworkService
 import com.mindorks.bootcamp.learndagger.di.ActivityScope
@@ -35,12 +36,12 @@ class MainViewModel @Inject constructor(
                         flatMap {
                             if(it == 0)
                                 databaseService.getUserDao().insertMany(
-                                        User(name = "Test 1"),
-                                        User(name = "Test 2"),
-                                        User(name = "Test 3"),
-                                        User(name = "Test 4"),
-                                        User(name = "Test 5"),
-                                        User(name = "Test 6")
+                                        User(name = "Test 1",address = Address("San Diego",country = "USA")),
+                                        User(name = "Test 2",address = Address("San Diego",country = "USA")),
+                                        User(name = "Test 3",address = Address("San Diego",country = "USA")),
+                                        User(name = "Test 4",address = Address("San Diego",country = "USA")),
+                                        User(name = "Test 5",address = Address("San Diego",country = "USA")),
+                                        User(name = "Test 6",address = Address("San Diego",country = "USA"))
                                 )
                             else Single.just(0)
                         }

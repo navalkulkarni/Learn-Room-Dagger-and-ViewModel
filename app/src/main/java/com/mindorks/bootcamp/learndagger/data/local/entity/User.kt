@@ -1,16 +1,21 @@
 package com.mindorks.bootcamp.learndagger.data.local.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "users")
 data class User(
 
         @PrimaryKey(autoGenerate = true)
-        val id:Long = 0,
+        var id:Long = 0,
 
         @ColumnInfo(name = "name")
-        val name:String
+        var name:String,
 
-)
+        @Embedded
+        var address: Address,
+
+        @Ignore
+        var selected:Boolean = false
+){
+        constructor():this(0,"", Address("",""),false)
+}
