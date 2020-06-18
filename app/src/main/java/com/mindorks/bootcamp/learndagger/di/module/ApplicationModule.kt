@@ -12,6 +12,7 @@ import com.mindorks.bootcamp.learndagger.di.NetworkInfo
 
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 @Module
@@ -40,4 +41,7 @@ class ApplicationModule(private val application: MyApplication) {
             DatabaseService::class.java,
             "bootcamp-database-project-db"
     ).build()
+
+    @Provides
+    fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 }
