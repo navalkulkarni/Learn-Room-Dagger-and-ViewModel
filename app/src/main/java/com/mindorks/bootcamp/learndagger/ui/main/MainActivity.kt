@@ -12,6 +12,7 @@ import com.mindorks.bootcamp.learndagger.ui.home.HomeFragment
 import javax.inject.Inject
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +27,23 @@ class MainActivity : AppCompatActivity() {
         val tvData = findViewById<TextView>(R.id.tv_message)
         /*tvData.text = viewModel.someData*/
 
+        viewModel.userList.observe(this, Observer {
+            tvData.text = it.toString()
+        }
+        )
+
         addHomeFragment()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getAllUsers()
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.deleteUser()
     }
 
     private fun addHomeFragment() {
@@ -45,5 +62,10 @@ class MainActivity : AppCompatActivity() {
                 .activityModule(ActivityModule(this))
                 .build()
                 .inject(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.onDestroy()
     }
 }
