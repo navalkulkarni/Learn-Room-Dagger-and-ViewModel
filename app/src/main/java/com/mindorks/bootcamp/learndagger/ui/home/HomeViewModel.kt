@@ -13,8 +13,5 @@ class HomeViewModel @Inject constructor(
         private val networkService: NetworkService,
         private val networkHelper: NetworkHelper) {
 
-    val someData: String
-        get() = (databaseService.dummyData
-                + " : " + networkService.dummyData
-                + " : " + networkHelper.isNetworkConnected)
+    
 }
