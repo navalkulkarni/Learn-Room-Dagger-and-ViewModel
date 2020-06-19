@@ -1,6 +1,7 @@
 package com.mindorks.bootcamp.learndagger.data.local.entity
 
 import androidx.room.*
+import java.util.*
 
 @Entity(tableName = "users",
         foreignKeys = [
@@ -12,7 +13,6 @@ import androidx.room.*
         ]
 
 )
-
 data class User(
 
         @PrimaryKey(autoGenerate = true)
@@ -24,8 +24,11 @@ data class User(
         @ColumnInfo(name="addressId")
         var addressId: Long,
 
+        @ColumnInfo(name="date_of_birth")
+        var dob : Date,
+
         @Ignore
         var selected:Boolean = false
 ){
-        constructor():this(0,"", 0,false)
+        constructor():this(0,"", 0,Date(),false)
 }

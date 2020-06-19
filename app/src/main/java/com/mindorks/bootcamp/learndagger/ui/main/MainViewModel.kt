@@ -12,6 +12,7 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.Schedulers.io
+import java.util.*
 
 import javax.inject.Inject
 
@@ -38,21 +39,21 @@ class MainViewModel @Inject constructor(
                         flatMap {
                             if(it == 0)
                                 databaseService.getAddressDao().insertMany(
-                                        Address(city = "San Diego",country = "USA"),
-                                        Address(city = "San Diego",country = "USA"),
-                                        Address(city = "San Diego",country = "USA"),
-                                        Address(city = "San Diego",country = "USA"),
-                                        Address(city = "San Diego",country = "USA"),
-                                        Address(city = "San Diego",country = "USA")
+                                        Address(city = "San Diego",country = "USA",code = 1),
+                                        Address(city = "San Diego",country = "USA",code = 2),
+                                        Address(city = "San Diego",country = "USA",code = 3),
+                                        Address(city = "San Diego",country = "USA",code = 4),
+                                        Address(city = "San Diego",country = "USA",code = 5),
+                                        Address(city = "San Diego",country = "USA",code = 6)
                                 )
                                         .flatMap {addressIds->
                                             databaseService.getUserDao().insertMany(
-                                                    User(name = "Test 1",addressId = addressIds[0]),
-                                                    User(name = "Test 2",addressId = addressIds[1] ),
-                                                    User(name = "Test 3",addressId = addressIds[2]),
-                                                    User(name = "Test 4",addressId = addressIds[3]),
-                                                    User(name = "Test 5",addressId = addressIds[4]),
-                                                    User(name = "Test 6",addressId = addressIds[5])
+                                                    User(name = "Test 1",addressId = addressIds[0],dob = Date(9596845779)),
+                                                    User(name = "Test 2",addressId = addressIds[1],dob = Date(9596845779) ),
+                                                    User(name = "Test 3",addressId = addressIds[2],dob = Date(9596845779)),
+                                                    User(name = "Test 4",addressId = addressIds[3],dob = Date(9596845779)),
+                                                    User(name = "Test 5",addressId = addressIds[4],dob = Date(9596845779)),
+                                                    User(name = "Test 6",addressId = addressIds[5],dob = Date(9596845779))
                                             )
                                         }
 

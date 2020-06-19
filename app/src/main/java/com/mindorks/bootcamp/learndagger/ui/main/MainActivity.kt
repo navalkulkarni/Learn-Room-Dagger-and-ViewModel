@@ -25,10 +25,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tvData = findViewById<TextView>(R.id.tv_message)
+        val tvData2 = findViewById<TextView>(R.id.tv_message2)
         /*tvData.text = viewModel.someData*/
 
         viewModel.userList.observe(this, Observer {
             tvData.text = it.toString()
+        }
+        )
+
+        viewModel.addressList.observe(this, Observer {
+            tvData2.text = it.toString()
         }
         )
 
@@ -37,13 +43,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        viewModel.getAllAddresses()
         viewModel.getAllUsers()
 
     }
 
     override fun onStop() {
         super.onStop()
-        viewModel.deleteUser()
+        viewModel.deleteAddress()
     }
 
     private fun addHomeFragment() {

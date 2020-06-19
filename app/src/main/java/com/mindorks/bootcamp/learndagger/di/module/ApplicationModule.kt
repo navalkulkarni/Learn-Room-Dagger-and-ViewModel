@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase
 
 import com.mindorks.bootcamp.learndagger.MyApplication
 import com.mindorks.bootcamp.learndagger.data.local.DatabaseService
+import com.mindorks.bootcamp.learndagger.data.local.entity.MIGRATION_1_2
 import com.mindorks.bootcamp.learndagger.di.ApplicationContext
 import com.mindorks.bootcamp.learndagger.di.DatabaseInfo
 import com.mindorks.bootcamp.learndagger.di.NetworkInfo
@@ -40,7 +41,8 @@ class ApplicationModule(private val application: MyApplication) {
             application,
             DatabaseService::class.java,
             "bootcamp-database-project-db"
-    ).build()
+    ).addMigrations(MIGRATION_1_2).
+    build()
 
     @Provides
     fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()

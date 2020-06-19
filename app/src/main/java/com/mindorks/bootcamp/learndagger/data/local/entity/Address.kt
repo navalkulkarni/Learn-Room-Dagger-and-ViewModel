@@ -11,9 +11,12 @@ data class Address(
         var id:Long =0,
 
         @ColumnInfo(name = "city")
-        val city:String,
+        var city:String,
 
         @ColumnInfo(name = "country")
-        val country:String
+        var country:String,
+
+        @ColumnInfo(name = "code")
+        var code:Int = 0
 ) {
 }
